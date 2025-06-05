@@ -1,0 +1,111 @@
+body {
+    background: linear-gradient(120deg, #00c6ff, #0072ff);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    background: #fff;
+    max-width: 500px;
+    margin: 40px auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    padding: 32px 24px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #0072ff;
+}
+
+form {
+    margin-bottom: 32px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #0072ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: #005bb5;
+}
+
+button#clear-history,
+button#export-csv,
+button#export-pdf {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 10px;
+    background: #f0f8ff;
+    color: #0072ff;
+    border: 1px solid #0072ff;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+button#clear-history:hover,
+button#export-csv:hover,
+button#export-pdf:hover {
+    background: #0072ff;
+    color: #fff;
+}
+
+#history {
+    margin-top: 16px;
+}
+
+.reading-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+
+.reading-table th, .reading-table td {
+    border: 1px solid #e0e0e0;
+    padding: 8px;
+    text-align: center;
+}
+
+.reading-table th {
+    background: #f0f8ff;
+    color: #0072ff;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 16px 4px;
+    }
+    h1, h2 {
+        font-size: 1.3rem;
+    }
+}
