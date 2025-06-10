@@ -101,6 +101,27 @@ button#export-pdf:hover {
     color: #0072ff;
 }
 
+button.delete-btn {
+    background: #ffdddd;
+    color: #c00;
+    border: 1px solid #c00;
+    margin-left: 4px;
+}
+button.delete-btn:hover {
+    background: #c00;
+    color: #fff;
+}
+button.edit-btn {
+    background: #e0f7fa;
+    color: #00796b;
+    border: 1px solid #00796b;
+    margin-right: 4px;
+}
+button.edit-btn:hover {
+    background: #00796b;
+    color: #fff;
+}
+
 @media (max-width: 600px) {
     .container {
         padding: 16px 4px;

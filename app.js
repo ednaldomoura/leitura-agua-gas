@@ -16,18 +16,48 @@ document.addEventListener('DOMContentLoaded', function() {
             historyDiv.innerHTML = '<p>Nenhuma leitura registrada ainda.</p>';
             return;
         }
-        let html = '<table class="reading-table"><thead><tr><th>Tipo</th><th>Data</th><th>Leitura (m³)</th><th>Consumo</th></tr></thead><tbody>';
+        let html = '<table class="reading-table"><thead><tr><th>Tipo</th><th>Data</th><th>Leitura (m³)</th><th>Consumo</th><th>Ações</th></tr></thead><tbody>';
         let lastValues = { agua: null, gas: null };
-        readings.forEach(reading => {
+        readings.forEach((reading, idx) => {
             let consumo = '-';
             if (lastValues[reading.type] !== null) {
                 consumo = (lastValues[reading.type] - reading.value).toFixed(2) + ' m³';
             }
-            html += `<tr><td>${reading.type === 'agua' ? 'Água' : 'Gás'}</td><td>${reading.date}</td><td>${reading.value}</td><td>${consumo}</td></tr>`;
+            html += `<tr><td>${reading.type === 'agua' ? 'Água' : 'Gás'}</td><td>${reading.date}</td><td>${reading.value}</td><td>${consumo}</td><td><button class='edit-btn' data-idx='${idx}'>Editar</button> <button class='delete-btn' data-idx='${idx}'>Excluir</button></td></tr>`;
             lastValues[reading.type] = reading.value;
         });
         html += '</tbody></table>';
         historyDiv.innerHTML = html;
+
+        // Adiciona evento aos botões de excluir
+        document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const idx = parseInt(this.getAttribute('data-idx'));
+                const readings = getReadings();
+                if (confirm('Deseja realmente excluir esta leitura?')) {
+                    readings.splice(idx, 1);
+                    saveReadings(readings);
+                    renderHistory();
+                }
+            });
+        });
+
+        // Adiciona evento aos botões de editar
+        document.querySelectorAll('.edit-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const idx = parseInt(this.getAttribute('data-idx'));
+                const readings = getReadings();
+                const leitura = readings[idx];
+                // Preenche o formulário com os dados da leitura
+                document.getElementById('type').value = leitura.type;
+                document.getElementById('date').value = leitura.date;
+                document.getElementById('value').value = leitura.value;
+                // Remove a leitura antiga
+                readings.splice(idx, 1);
+                saveReadings(readings);
+                renderHistory();
+            });
+        });
     }
 
     form.addEventListener('submit', function(e) {
